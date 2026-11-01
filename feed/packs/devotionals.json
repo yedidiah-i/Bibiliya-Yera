@@ -1,0 +1,59 @@
+{
+  "id": "devotionals-kinyarwanda",
+  "type": "devotionals",
+  "title": "Ibitekerezo bya buri munsi",
+  "version": "1.0.0",
+  "notes": "Ibitekerezo 10 by'umunsi ku munsi, bifitanye isano n'imirongo ya Bibiliya.",
+  "items": [
+    {
+      "title": "Urumuri rw'isi",
+      "body": "Yesu avuga ko ari urumuri rw'isi. Iyo tumukurikira, ntitugenda mu mwijima: inzira yacu igira icyerekezo n'amahoro. Uyu munsi, reka urumuri rwe ruyobore ibitekerezo byawe n'ibikorwa byawe.",
+      "ref": { "book": 42, "chapter": 8, "verse": 12 }
+    },
+    {
+      "title": "Ntutinye",
+      "body": "Imana itubwira kutagira ubwoba kuko iri kumwe natwe. Ndetse n'igihe tubona ibintu bigoye, ukuboko kwayo guturinda kandi kugatuma dukomera. Ubwoba ntibugomba kuyobora umunsi wawe.",
+      "ref": { "book": 22, "chapter": 41, "verse": 10 }
+    },
+    {
+      "title": "Amahoro aruta ubwenge",
+      "body": "Iyo dutegereje ko ibintu byose byikemura ubwacu, dushobora kwiheba. Pawulo atwigisha kumanika imitwaro yacu imbere y'Imana mu isengesho, tumushimira; amahoro ye arinda imitima yacu.",
+      "ref": { "book": 49, "chapter": 4, "verse": 6 }
+    },
+    {
+      "title": "Urukundo rudashidikanya",
+      "body": "Imana yadukunze mbere y'uko tuyikunda. Urukundo rwayo ntirushingira ku bikorwa byacu; ni impano ibonerwa mu kwizera. Uyu munsi, shingira ibyiringiro byawe kuri urwo rukundo.",
+      "ref": { "book": 44, "chapter": 5, "verse": 8 }
+    },
+    {
+      "title": "Gusaba ubwenge",
+      "body": "Ubwenge nyakuri buturuka ku Mana. Iyo tubaye umwanya wo kubisaba, itwizeza kuduha nta gushidikanya. Tangira umunsi usaba ubwenge bwo guhitamo neza mu buzima bwawe.",
+      "ref": { "book": 58, "chapter": 1, "verse": 5 }
+    },
+    {
+      "title": "Umushumba mwiza",
+      "body": "Zaburi 23 itwibutsa ko Imana iturera nk'umushumba: iturinda, ituyobora, kandi ituzuza ibyo dukeneye. Nubwo tugenda mu kibaya cy'igicucu, ntitubura icyizere kuko iri kumwe natwe.",
+      "ref": { "book": 18, "chapter": 23, "verse": 1 }
+    },
+    {
+      "title": "Imbaraga nshya",
+      "body": "Abakomeza kwizera Imana bahabwa imbaraga nshya. Ntibagenda n'imbaraga zabo gusa; Imana ibaruhura kandi ibayobora. Icyizere gituma udahagarara n'iyo wumva unaniwe.",
+      "ref": { "book": 22, "chapter": 40, "verse": 31 }
+    },
+    {
+      "title": "Kubabarira",
+      "body": "Kubabarira ntabwo ari kwirengagiza ibibi, ahubwo ni ukureka umutwaro wo kwihorera. Nk'uko Kristo yatubabariye, natwe duhabwa amahoro iyo turekeye abandi n'imitima yacu.",
+      "ref": { "book": 50, "chapter": 3, "verse": 13 }
+    },
+    {
+      "title": "Gushima muri byose",
+      "body": "Gushima ni imbaraga: ihindura uko tubona ubuzima. Ndetse n'igihe ibintu bitagenze neza, hari ibintu byiza byo gushima. Tangira umunsi ushima kandi ushimira abandi.",
+      "ref": { "book": 51, "chapter": 5, "verse": 18 }
+    },
+    {
+      "title": "Ubutwari bwo gutangira",
+      "body": "Imana ntidushakira kuba abantu batunganye; idushakira kuba abantu biyeguriye. Wumva ufite intege nke? Ni ho imbaraga zayo zigarukira, kuko ubuntu bwayo buhagije.",
+      "ref": { "book": 46, "chapter": 12, "verse": 9 }
+    }
+  ]
+}

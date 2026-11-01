@@ -1,0 +1,34 @@
+{
+  "name": "bibiliya-yera",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Bibiliya Yera — offline-first Kinyarwanda Bible for Windows",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "data": "node scripts/build-bible.mjs",
+    "icon": "node scripts/make-icon.mjs && tauri icon app-icon.png",
+    "feed:build": "node scripts/build-feed.mjs",
+    "feed": "node scripts/serve-feed.mjs",
+    "tauri": "tauri",
+    "app:dev": "tauri dev",
+    "app:build": "tauri build"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.9.0",
+    "@tauri-apps/plugin-dialog": "^2.4.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.9.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "fast-xml-parser": "^5.2.5",
+    "typescript": "^5.9.0",
+    "vite": "^7.1.0"
+  }
+}

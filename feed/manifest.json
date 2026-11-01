@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "updated": "2026-11-01",
+  "message": "Ibyongewe bishya kuri Bibiliya Yera.",
+  "packs": [
+    {
+      "id": "devotionals-kinyarwanda",
+      "title": "Ibitekerezo bya buri munsi",
+      "type": "devotionals",
+      "version": "1.0.0",
+      "size": 3153,
+      "sha256": "f7836570d185a68b275a653a28e166cb1208bb95921b7538f2761d2e624bc60c",
+      "url": "packs/devotionals.json",
+      "notes": "Ibitekerezo 10 by'umunsi ku munsi, bifitanye isano n'imirongo ya Bibiliya."
+    },
+    {
+      "id": "study-notes-intro",
+      "title": "Ibisobanuro ku mirongo y'ibanze",
+      "type": "notes",
+      "version": "1.0.0",
+      "size": 1548,
+      "sha256": "a96bcc3f36f6a2f253c19aaa7be54bd90b2c4b62efae3466726f44897a095fb1",
+      "url": "packs/study-notes.json",
+      "notes": "Ibisobanuro bigufi ku mirongo ikunze gusomwa, bigaragara iyo uhisemo umurongo."
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "feedUrl": "",
+  "comment": "Set feedUrl to the manifest.json you publish (e.g. https://example.com/bibile/manifest.json). Users can also override it in Settings. Leave empty to ship fully offline."
+}

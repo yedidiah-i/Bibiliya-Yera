@@ -1,0 +1,39 @@
+{
+  "id": "study-notes-intro",
+  "type": "notes",
+  "title": "Ibisobanuro ku mirongo y'ibanze",
+  "version": "1.0.0",
+  "notes": "Ibisobanuro bigufi ku mirongo ikunze gusomwa, bigaragara iyo uhisemo umurongo.",
+  "items": [
+    {
+      "book": 0,
+      "chapter": 1,
+      "verse": 1,
+      "text": "Igitabo gitangira n'amagambo \"Mbere na mbere Imana\". Iri tangira ritwereka ko Imana ari yo nkomoko y'ibintu byose, kandi ko isi itariho ubwayo ahubwo yaremwe n'uwifitiye ubushobozi bwose."
+    },
+    {
+      "book": 0,
+      "chapter": 1,
+      "verse": 27,
+      "text": "Kuremwa mu ishusho y'Imana ni ikimenyetso cy'agaciro ka buri muntu. Ntibivuga ko Imana ifite umubiri nk'uwacu, ahubwo ko umuntu ahabwa agaciro, ubushobozi bwo gutekereza no kuyobora ibiremwa."
+    },
+    {
+      "book": 42,
+      "chapter": 1,
+      "verse": 1,
+      "text": "Yohana atangira nk'uko Itangiriro ritangira: \"mu ntangiriro\". Yerekana ko Yesu atari ikiremwa nk'ibindi, ahubwo yari kumwe n'Imana mbere y'uko isi ibaho."
+    },
+    {
+      "book": 18,
+      "chapter": 23,
+      "verse": 1,
+      "text": "Kwita Imana \"umushumba\" byari ikimenyetso cyo kwitaho no kurinda. Umushumba yari azi neza umukumbi we, akawurinda ibyago no kwibagirwa. Ni ishusho y'ubwiza bw'uburongozi bw'Imana."
+    },
+    {
+      "book": 44,
+      "chapter": 8,
+      "verse": 28,
+      "text": "Pawulo ntabwira ko ibintu byose biba byiza uko twekereza, ahubwo ko Imana ikorana n'abayikunda kugira ngo ibigamije ibyiza bikorwe. Ni isezerano ry'icyizere mu bihe bigoye."
+    }
+  ]
+}
