@@ -2,9 +2,7 @@ name: Release CI
 
 on:
   push:
-    branches:
-      - main  # Triggers immediately whenever you push code or save changes to main
-  workflow_dispatch: # Adds a manual "Run workflow" button to your browser window
+    branches: [ main ]
 
 jobs:
   release:
@@ -23,40 +21,30 @@ jobs:
 
     runs-on: ${{ matrix.platform }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: 'npm'
+          node-version: 18
 
-      - name: Install Rust stable
-        uses: dtolnay/rust-toolchain@stable
-        with:
-          targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
-
-      - name: Install Linux dependencies (Ubuntu only)
+      - name: Install Ubuntu Dependencies
         if: matrix.platform == 'ubuntu-22.04'
         run: |
           sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev
+          sudo apt-get install -y libwebkit2gtk-4.0-dev libssl-dev libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev
 
-      - name: Install Frontend Dependencies
-        run: npm install
-
-      - name: Generate Binary Bible Data Assets
-        run: npm run data  # CRITICAL: This generates bible.bin and xref.bin inside your backend resources
+      - name: Setup Rust Stable
+        uses: dtolnay/rust-toolchain@stable
 
       - name: Build and Package Desktop App
         uses: tauri-apps/tauri-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: 'v1.0.1-build'
-          tagMessage: 'Automated Build v1.0.1'
-          releaseName: 'Automated Installer Build v1.0.1'
+          tagName: 'v1.0.${{ github.run_number }}'
+          tagMessage: 'Automated Build v1.0.${{ github.run_number }}'
+          releaseName: 'Bibiliya Yera v1.0.${{ github.run_number }}'
           releaseBody: 'Automated installers compiled cleanly by GitHub Actions.'
           releaseDraft: true
           prerelease: false

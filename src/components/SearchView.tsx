@@ -145,7 +145,7 @@ export function SearchView({ meta, query, onQuery, onOpen }: Props) {
             <div className="empty">
               <Icon name="search" size={28} />
               <p>Nta bisubizo byabonetse kuri “{query}”.</p>
-              <span className="muted small">Gerageza ijambo ribaho cyangwa irindi.</span>
+              <span className="muted small">Gerageza ijambo rifupi cyangwa irindi.</span>
             </div>
           )}
           {page.hits.map((h, i) => (
