@@ -50,7 +50,7 @@ jobs:
         run: npm run data  # CRITICAL: This generates bible.bin and xref.bin inside your backend resources
 
       - name: Build and Package Desktop App
-        uses: tauri-apps/tauri-action@v0
+        uses: tauri-apps/tauri-action@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
