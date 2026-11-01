@@ -19,6 +19,7 @@ import { PlansView } from "./components/PlansView";
 import { SavedView } from "./components/SavedView";
 import { OnlineView } from "./components/OnlineView";
 import { SettingsView } from "./components/SettingsView";
+import { SupportView } from "./components/SupportView";
 import { CommandPalette } from "./components/CommandPalette";
 import { Icon } from "./components/Icon";
 
@@ -293,6 +294,7 @@ export default function App() {
           {view === "online" && (
             <OnlineView packs={packs} onRefresh={refreshPacks} online={online} />
           )}
+          {view === "support" && <SupportView online={online} />}
           {view === "settings" && <SettingsView meta={meta} />}
         </div>
       </main>
