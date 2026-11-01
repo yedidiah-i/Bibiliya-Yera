@@ -140,6 +140,7 @@ fn feed_default_url(app: AppHandle) -> String {
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
+        .plugin(tauri_plugin_shell::init())
         .setup(|app| {
             let handle = app.handle();
             let bible_bin = resource_path(handle, "bible.bin")?;

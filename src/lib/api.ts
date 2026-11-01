@@ -98,4 +98,17 @@ export const api = {
     ),
   backupExport: (path: string) => invoke<string>("backup_export", { path }),
   backupImport: (path: string) => invoke<string>("backup_import", { path }),
+  sendSupportEmail: async (to: string, subject: string, body: string) => {
+    try {
+      const { open } = await import("@tauri-apps/plugin-shell");
+      const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      await open(mailto);
+      return true;
+    } catch (e) {
+      // Fallback to window location
+      const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
+      return true;
+    }
+  },
 };

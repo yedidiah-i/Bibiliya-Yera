@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { api, type Meta } from "../lib/api";
 import { actions, defaultState, useApp, type AppState, type Theme } from "../lib/store";
 import { Icon } from "./Icon";
@@ -206,6 +206,20 @@ export function SettingsView({ meta }: { meta: Meta }) {
         {err && <div className="notice err">{err}</div>}
       </section>
 
+      <section className="card">
+        <div className="card-head">
+          <span className="chip">
+            <Icon name="note" size={13} /> Ubufasha
+          </span>
+        </div>
+        <p className="muted small">
+          Niba ufite ikibazo cyangwa igitekerezo, wandike hano. Ubutumwa buzakoherezwa kuri
+          <strong> futureksmeyedidiah@gmail.com</strong> iyo murandasi ihari. Niba nta murandasi,
+          buzigumishwa kandi buzoherezwa iyo murandasi igarutse.
+        </p>
+        <SupportForm />
+      </section>
+
       <section className="card about">
         <div className="card-head">
           <span className="chip">
@@ -241,5 +255,145 @@ export function SettingsView({ meta }: { meta: Meta }) {
         </p>
       </section>
     </div>
+  );
+}
+
+function SupportForm() {
+  const app = useApp();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<string | null>(null);
+  const [err, setErr] = useState<string | null>(null);
+  const [online, setOnline] = useState<boolean>(navigator.onLine);
+
+  useEffect(() => {
+    const on = () => setOnline(true);
+    const off = () => setOnline(false);
+    window.addEventListener("online", on);
+    window.addEventListener("offline", off);
+    return () => {
+      window.removeEventListener("online", on);
+      window.removeEventListener("offline", off);
+    };
+  }, []);
+
+  useEffect(() => {
+    const queue = app.support?.queue ?? [];
+    const pending = queue.filter((t) => !t.sent);
+    if (pending.length > 0 && online) {
+      pending.forEach((t) => {
+        const body = [
+          `Izina: ${t.name || "-"}`,
+          `Email: ${t.email || "-"}`,
+          ``,
+          t.message,
+          ``,
+          `---`,
+          `Yoherejwe na Bibiliya Yera (${new Date(t.createdAt).toISOString()})`,
+        ].join("\n");
+        api
+          .sendSupportEmail("futureksmeyedidiah@gmail.com", t.subject || "Ubufasha - Bibiliya Yera", body)
+          .then(() => {
+            actions.markSupportSent(t.id);
+          })
+          .catch(() => {});
+      });
+    }
+  }, [online, app.support?.queue]);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus(null);
+    setErr(null);
+    if (!subject.trim() || !message.trim()) {
+      setErr("Andika umutwe n'ubutumwa.");
+      return;
+    }
+    const ticket = actions.addSupportTicket({
+      name: name.trim() || undefined,
+      email: email.trim() || undefined,
+      subject: subject.trim(),
+      message: message.trim(),
+    });
+    if (online) {
+      const body = [
+        `Izina: ${name.trim() || "-"}`,
+        `Email: ${email.trim() || "-"}`,
+        ``,
+        message.trim(),
+        ``,
+        `---`,
+        `Yoherejwe na Bibiliya Yera (${new Date(ticket.createdAt).toISOString()})`,
+      ].join("\n");
+      try {
+        await api.sendSupportEmail(
+          "futureksmeyedidiah@gmail.com",
+          subject.trim(),
+          body,
+        );
+        actions.markSupportSent(ticket.id);
+        setStatus("Ubutumwa bwoherejwe. Murakoze!");
+      } catch {
+        setStatus("Ubutumwa bubitswe. Buzoherezwa iyo murandasi igarutse.");
+      }
+    } else {
+      setStatus("Nta murandasi. Ubutumwa bubitswe. Buzoherezwa iyo murandasi igarutse.");
+    }
+    setSubject("");
+    setMessage("");
+  };
+
+  const pending = (app.support?.queue ?? []).filter((t) => !t.sent);
+
+  return (
+    <form onSubmit={submit} style={{ display: "grid", gap: 10, marginTop: 12 }}>
+      <div className="row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+        <input
+          className="input"
+          placeholder="Izina (bitari ngombwa)"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          className="input"
+          placeholder="Email (bitari ngombwa)"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
+      <input
+        className="input"
+        placeholder="Umutwe w'ikibazo"
+        value={subject}
+        onChange={(e) => setSubject(e.target.value)}
+        required
+      />
+      <textarea
+        className="input"
+        placeholder="Sobanura ikibazo cyangwa igitekerezo cyawe..."
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        rows={5}
+        required
+        style={{ resize: "vertical" }}
+      />
+      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <button className="btn" type="submit">
+          Ohereza
+        </button>
+        <span className="muted small">
+          {online ? "Kuri murandasi" : "Nta murandasi - buzoherezwa nyuma"}
+        </span>
+        {pending.length > 0 && (
+          <span className="muted small">
+            {pending.length} butumwa butegereje koherezwa
+          </span>
+        )}
+      </div>
+      {status && <div className="notice ok">{status}</div>}
+      {err && <div className="notice err">{err}</div>}
+    </form>
   );
 }

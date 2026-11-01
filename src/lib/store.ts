@@ -31,6 +31,16 @@ export interface PlanProgress {
   started: number;
 }
 
+export interface SupportTicket {
+  id: string;
+  name?: string;
+  email?: string;
+  subject: string;
+  message: string;
+  createdAt: number;
+  sent: boolean;
+}
+
 export interface AppState {
   version: 1;
   prefs: Prefs;
@@ -41,6 +51,7 @@ export interface AppState {
   notes: Record<string, Note>;
   plans: Record<string, PlanProgress>;
   feed: { url: string; lastCheck: number };
+  support: { queue: SupportTicket[] };
 }
 
 export const HIGHLIGHT_COLORS = [
@@ -71,6 +82,7 @@ const defaultState = (): AppState => ({
   notes: {},
   plans: {},
   feed: { url: "", lastCheck: 0 },
+  support: { queue: [] },
 });
 
 let state: AppState = defaultState();
@@ -125,6 +137,7 @@ export async function initStore() {
         ...parsed,
         prefs: { ...defaultState().prefs, ...(parsed.prefs ?? {}) },
         feed: { ...defaultState().feed, ...(parsed.feed ?? {}) },
+        support: { ...(defaultState().support), ...(parsed.support ?? {}) },
       };
     }
   } catch (e) {
@@ -221,6 +234,35 @@ export const actions = {
   },
   markFeedChecked() {
     update((s) => ({ ...s, feed: { ...s.feed, lastCheck: Date.now() } }));
+  },
+  addSupportTicket(ticket: Omit<SupportTicket, "id" | "createdAt" | "sent">) {
+    const newTicket: SupportTicket = {
+      id: `sup_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`,
+      createdAt: Date.now(),
+      sent: false,
+      ...ticket,
+    };
+    update((s) => ({
+      ...s,
+      support: { queue: [newTicket, ...(s.support?.queue ?? [])] },
+    }));
+    return newTicket;
+  },
+  markSupportSent(id: string) {
+    update((s) => ({
+      ...s,
+      support: {
+        queue: (s.support?.queue ?? []).map((t) =>
+          t.id === id ? { ...t, sent: true } : t,
+        ),
+      },
+    }));
+  },
+  removeSupportTicket(id: string) {
+    update((s) => ({
+      ...s,
+      support: { queue: (s.support?.queue ?? []).filter((t) => t.id !== id) },
+    }));
   },
   replaceState(next: AppState) {
     state = { ...defaultState(), ...next };
