@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Bibiliya Yera",
+  "productName": "Bibiliya-Yera",
   "version": "1.0.0",
   "identifier": "rw.bibiliyayera.bible",
   "build": {
