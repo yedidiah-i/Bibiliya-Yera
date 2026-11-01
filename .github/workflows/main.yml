@@ -2,8 +2,9 @@ name: Release CI
 
 on:
   push:
-    tags:
-      - 'v*' # Triggers the workflow whenever you push a version tag like v1.0.0
+    branches:
+      - main  # Triggers immediately whenever you push code or save changes to main
+  workflow_dispatch: # Adds a manual "Run workflow" button to your browser window
 
 jobs:
   release:
@@ -14,7 +15,7 @@ jobs:
       matrix:
         include:
           - platform: 'macos-latest'
-            args: '--target universal-apple-darwin' # Builds for both Intel and Apple Silicon
+            args: '--target universal-apple-darwin'
           - platform: 'ubuntu-22.04'
             args: ''
           - platform: 'windows-latest'
@@ -28,8 +29,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: lts/*
-          cache: 'npm' # Change to 'yarn' or 'pnpm' if you use those instead
+          node-version: 20
+          cache: 'npm'
 
       - name: Install Rust stable
         uses: dtolnay/rust-toolchain@stable
@@ -45,15 +46,18 @@ jobs:
       - name: Install Frontend Dependencies
         run: npm install
 
+      - name: Generate Binary Bible Data Assets
+        run: npm run data  # CRITICAL: This generates bible.bin and xref.bin inside your backend resources
+
       - name: Build and Package Desktop App
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: ${{ github.ref_name }}
-          tagMessage: 'Release ${{ github.ref_name }}'
-          releaseName: 'Release ${{ github.ref_name }}'
-          releaseBody: 'Automated release built by GitHub Actions.'
+          tagName: 'v1.0.0-build'
+          tagMessage: 'Automated Build'
+          releaseName: 'Automated Installer Build'
+          releaseBody: 'Automated installers compiled cleanly by GitHub Actions.'
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}
