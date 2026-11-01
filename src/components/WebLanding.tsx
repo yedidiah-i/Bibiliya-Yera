@@ -59,13 +59,13 @@ export function WebLanding() {
         <div>
           <p className="eyebrow">Windows desktop app</p>
           <h2 id="installer-title">A Bible library that works offline.</h2>
-          <p>Install Bibiliya Yera on Windows with the MSI installer. The installer download will appear here as soon as a release file is published.</p>
+          <p>Install Bibiliya Yera on Windows with the MSI installer from the latest GitHub release.</p>
         </div>
         <div className="web-installer-card">
           <strong>Bibiliya Yera for Windows</strong>
           <span>MSI installer</span>
-          <a className="web-primary" href="/downloads/bibiliya-yera.msi" download>Download MSI installer</a>
-          <small>Release file not published yet. The app is already configured to build an MSI package.</small>
+          <a className="web-primary" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/download/untagged-7e522b0ae07f05ceca3b/Bibiliya.Yera_1.0.0_x64_en-US.msi">Download MSI installer</a>
+          <small>Version 1.0.0 for 64-bit Windows. Hosted on the Bibiliya Yera GitHub release.</small>
         </div>
       </section>
 
