@@ -54,9 +54,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: 'v1.0.0-build'
-          tagMessage: 'Automated Build'
-          releaseName: 'Automated Installer Build'
+          tagName: 'v1.0.1-build'
+          tagMessage: 'Automated Build v1.0.1'
+          releaseName: 'Automated Installer Build v1.0.1'
           releaseBody: 'Automated installers compiled cleanly by GitHub Actions.'
           releaseDraft: true
           prerelease: false
