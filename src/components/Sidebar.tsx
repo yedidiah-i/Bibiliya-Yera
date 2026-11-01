@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { Meta } from "../lib/api";
 import { Icon } from "./Icon";
 
-export type View = "home" | "read" | "search" | "plans" | "saved" | "notes" | "online" | "settings";
+export type View = "home" | "read" | "search" | "plans" | "saved" | "notes" | "online" | "support" | "settings";
 
 interface Props {
   meta: Meta;
@@ -76,6 +76,12 @@ export function Sidebar({ meta, view, place, onOpen, onView, onSearch, online }:
           label="Ibyongewe"
           active={view === "online"}
           onClick={() => onView("online")}
+        />
+        <NavItem
+          icon="info"
+          label="Ubufasha"
+          active={view === "support"}
+          onClick={() => onView("support")}
         />
       </nav>
 
@@ -161,7 +167,7 @@ function NavItem({
   active,
   onClick,
 }: {
-  icon: "home" | "book" | "plan" | "bookmark" | "note" | "globe";
+  icon: "home" | "book" | "plan" | "bookmark" | "note" | "globe" | "info";
   label: string;
   active: boolean;
   onClick: () => void;
