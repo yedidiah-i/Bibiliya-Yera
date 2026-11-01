@@ -258,7 +258,7 @@ impl Bible {
 
     pub fn reference(&self, vi: usize) -> CrossRef {
         let b = self.v_book[vi] as usize;
-        let c = self.v_ch[vi] as usize;
+        let c = self.v_ch[vi] as usize + 1; // stored 0-based, displayed 1-based
         let v = self.v_num[vi] as usize;
         CrossRef {
             book: b,
@@ -362,5 +362,91 @@ impl Xrefs {
             out.push(r);
         }
         out
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::path::PathBuf;
+
+    fn resources() -> PathBuf {
+        PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("resources")
+    }
+
+    fn bible() -> Bible {
+        Bible::load(&resources().join("bible.bin")).expect("bible.bin should load")
+    }
+
+    #[test]
+    fn counts_match_the_canon() {
+        let b = bible();
+        assert_eq!(b.meta.books.len(), 66);
+        assert_eq!(b.meta.total_chapters, 1189);
+        assert_eq!(b.meta.total_verses, 31167);
+        assert_eq!(b.meta.books[18].name, "Zaburi");
+        assert_eq!(b.meta.books[65].name, "Ibyahishuwe");
+    }
+
+    #[test]
+    fn chapters_slice_the_right_verses() {
+        let b = bible();
+        let genesis = b.chapter(0, 1);
+        assert_eq!(genesis.len(), 31);
+        assert!(genesis[0].starts_with("Mbere na mbere Imana yaremye ijuru"));
+        let ps119 = b.chapter(18, 119);
+        assert_eq!(ps119.len(), 176);
+        // Out of range must be empty, never a panic.
+        assert!(b.chapter(0, 0).is_empty());
+        assert!(b.chapter(0, 51).is_empty());
+        assert!(b.chapter(99, 1).is_empty());
+    }
+
+    #[test]
+    fn search_is_case_insensitive_and_paged() {
+        let b = bible();
+        let lower = b.search("urukundo", None, 0, 20);
+        let upper = b.search("URUKUNDO", None, 0, 20);
+        assert!(lower.total > 100, "expected many matches, got {}", lower.total);
+        assert_eq!(lower.total, upper.total);
+        assert_eq!(lower.hits.len(), 20);
+        assert!(lower.hits[0].text.to_lowercase().contains("urukundo"));
+
+        // Paging continues where the previous page stopped.
+        let page2 = b.search("urukundo", None, 20, 20);
+        assert_ne!(lower.hits[0].verse, page2.hits[0].verse);
+
+        // Testament scope really filters.
+        let nt = b.search("urukundo", Some("NT"), 0, 10);
+        assert!(nt.hits.iter().all(|h| b.meta.books[h.book].testament == "NT"));
+        assert!(nt.total < lower.total);
+
+        assert_eq!(b.search("", None, 0, 10).total, 0);
+    }
+
+    #[test]
+    fn cross_references_resolve_to_real_verses() {
+        let b = bible();
+        let x = Xrefs::load(&resources().join("xref.bin")).expect("xref.bin should load");
+        let refs = x.for_verse(&b, 42, 3, 16); // Yohana 3:16
+        assert!(!refs.is_empty(), "John 3:16 should have cross references");
+        for r in &refs {
+            assert!(r.book < b.meta.books.len());
+            assert!(r.chapter >= 1 && r.chapter <= b.meta.books[r.book].chapters);
+            assert!(r.verse >= 1 && r.verse <= b.meta.books[r.book].verses[r.chapter - 1]);
+            assert!(!r.label.is_empty() && !r.text.is_empty());
+        }
+        // Every book must resolve at least one reference somewhere.
+        assert!(x.for_verse(&b, 0, 1, 1).len() > 0);
+    }
+
+    #[test]
+    fn passage_bounds_are_clamped() {
+        let b = bible();
+        let p = b.passage(0, 1, 1, 3);
+        assert_eq!(p.len(), 3);
+        assert_eq!(p[0].verse, 1);
+        let clamped = b.passage(0, 1, 30, 999);
+        assert_eq!(clamped.last().unwrap().verse, 31);
     }
 }

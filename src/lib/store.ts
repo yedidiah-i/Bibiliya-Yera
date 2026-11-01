@@ -172,11 +172,23 @@ export const actions = {
     });
   },
   setHighlight(book: number, chapter: number, verse: number, color: string | null) {
+    actions.setHighlightRange(book, chapter, verse, verse, color);
+  },
+  /** Applies one colour to every verse of a selection in a single state update. */
+  setHighlightRange(
+    book: number,
+    chapter: number,
+    from: number,
+    to: number,
+    color: string | null,
+  ) {
     update((s) => {
-      const key = verseKey(book, chapter, verse);
       const highlights = { ...s.highlights };
-      if (color) highlights[key] = color;
-      else delete highlights[key];
+      for (let v = from; v <= to; v++) {
+        const key = verseKey(book, chapter, v);
+        if (color) highlights[key] = color;
+        else delete highlights[key];
+      }
       return { ...s, highlights };
     });
   },

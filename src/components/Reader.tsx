@@ -258,22 +258,26 @@ export function Reader({
         <div className="actionbar">
           <span className="ab-label">{label}</span>
           <div className="ab-swatches">
-            {HIGHLIGHT_COLORS.map((c) => (
-              <button
-                key={c.key}
-                className={`swatch ${app.highlights[verseKey(book, chapter, selection.start)] === c.key ? "on" : ""}`}
-                style={{ background: isDark ? c.dark : c.light }}
-                title="Shyira ibara"
-                onClick={() =>
-                  actions.setHighlight(
-                    book,
-                    chapter,
-                    selection.start,
-                    app.highlights[verseKey(book, chapter, selection.start)] === c.key ? null : c.key,
-                  )
-                }
-              />
-            ))}
+            {HIGHLIGHT_COLORS.map((c) => {
+              const active = app.highlights[verseKey(book, chapter, selection.start)] === c.key;
+              return (
+                <button
+                  key={c.key}
+                  className={`swatch ${active ? "on" : ""}`}
+                  style={{ background: isDark ? c.dark : c.light }}
+                  title="Shyira ibara ku mirongo yose watoranyije"
+                  onClick={() =>
+                    actions.setHighlightRange(
+                      book,
+                      chapter,
+                      selection.start,
+                      selection.end,
+                      active ? null : c.key,
+                    )
+                  }
+                />
+              );
+            })}
           </div>
           <div className="ab-actions">
             <button

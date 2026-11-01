@@ -234,3 +234,74 @@ fn now_iso() -> String {
         .unwrap_or_default();
     format!("{}", now.as_secs())
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::io::{Read, Write};
+    use std::net::TcpListener;
+
+    /// Serves one HTTP response on a random localhost port.
+    fn serve_once(body: &'static str) -> u16 {
+        let listener = TcpListener::bind("127.0.0.1:0").expect("bind");
+        let port = listener.local_addr().unwrap().port();
+        std::thread::spawn(move || {
+            if let Ok((mut stream, _)) = listener.accept() {
+                let mut buf = [0u8; 1024];
+                let _ = stream.read(&mut buf);
+                let resp = format!(
+                    "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: {}\r\nConnection: close\r\n\r\n{}",
+                    body.len(),
+                    body
+                );
+                let _ = stream.write_all(resp.as_bytes());
+            }
+        });
+        port
+    }
+
+    #[test]
+    fn manifest_is_fetched_and_relative_pack_urls_resolved() {
+        let body = r#"{"version":1,"updated":"2026-01-01","message":"hi","packs":[{"id":"p1","title":"Pack","type":"devotionals","version":"1.0.0","url":"packs/p1.json","sha256":"","size":10}]}"#;
+        let port = serve_once(body);
+        let base = format!("http://127.0.0.1:{port}/bibile/manifest.json");
+        let m = check(&base).expect("manifest should parse");
+        assert_eq!(m.packs.len(), 1);
+        assert_eq!(m.packs[0].id, "p1");
+        // Resolved next to the manifest, not at the site root.
+        assert_eq!(
+            m.packs[0].url,
+            format!("http://127.0.0.1:{port}/bibile/packs/p1.json")
+        );
+    }
+
+    #[test]
+    fn absolute_pack_urls_are_preserved() {
+        assert_eq!(
+            resolve("https://host/a/manifest.json", "https://cdn.example/p.json"),
+            "https://cdn.example/p.json"
+        );
+        assert_eq!(
+            resolve("https://host/a/manifest.json", "/packs/x.json"),
+            "https://host/a/packs/x.json"
+        );
+    }
+
+    #[test]
+    fn sha256_matches_known_digest() {
+        assert_eq!(
+            sha256_hex(b""),
+            "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        );
+        assert_eq!(
+            sha256_hex(b"abc"),
+            "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+        );
+    }
+
+    #[test]
+    fn unreachable_feed_reports_an_error_instead_of_panicking() {
+        // Port 1 is not serving anything: the reader must degrade gracefully.
+        assert!(check("http://127.0.0.1:1/manifest.json").is_err());
+    }
+}

@@ -60,7 +60,7 @@ export function HomeView({ meta, bundle, onOpen, onView }: Props) {
           <div className="eyebrow">{todayLabel()}</div>
           <h1>
             {greeting()}. <br />
-            <span className="h1-dim">Ijambo ryawe ni itabaza ry'ibirenge byanjye, Ni umucyo umurikira inzira yanjye.</span>
+            <span className="h1-dim">Ijambo ryawe ni itabaza ry'ibirenge byanjye.</span>
           </h1>
           <p className="lede">
             Bibiliya Yera offline and Online
