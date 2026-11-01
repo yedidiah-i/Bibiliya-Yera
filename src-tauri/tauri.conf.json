@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Bibiliya-Yera",
+  "productName": "bibiliya-yera",
   "version": "1.0.0",
-  "identifier": "rw.bibiliyayera.bible",
+  "identifier": "com.bibiliya.yera",
   "build": {
     "beforeDevCommand": "npm run dev",
     "devUrl": "http://localhost:5273",
