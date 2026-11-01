@@ -20,6 +20,7 @@ import { SavedView } from "./components/SavedView";
 import { OnlineView } from "./components/OnlineView";
 import { SettingsView } from "./components/SettingsView";
 import { SupportView } from "./components/SupportView";
+import { WebLanding } from "./components/WebLanding";
 import { CommandPalette } from "./components/CommandPalette";
 import { Icon } from "./components/Icon";
 
@@ -27,6 +28,7 @@ const THEME_ORDER: Theme[] = ["light", "sepia", "night"];
 
 export default function App() {
   const app = useApp();
+  const isTauri = typeof window !== "undefined" && "__TAURI_INTERNALS__" in window;
   const [meta, setMeta] = useState<Meta | null>(null);
   const [booted, setBooted] = useState(false);
   const [view, setView] = useState<View>("home");
@@ -41,6 +43,10 @@ export default function App() {
   const [online, setOnline] = useState<boolean>(navigator.onLine);
 
   useEffect(() => {
+    if (!isTauri) {
+      setBooted(true);
+      return;
+    }
     let alive = true;
     (async () => {
       await initStore();
@@ -58,7 +64,7 @@ export default function App() {
     return () => {
       alive = false;
     };
-  }, []);
+  }, [isTauri]);
 
   useEffect(() => {
     applyTheme(app.prefs.theme);
@@ -77,6 +83,7 @@ export default function App() {
 
   // Persist before the window goes away — notes are never lost on close.
   useEffect(() => {
+    if (!isTauri) return;
     let unlisten: (() => void) | null = null;
     const w = getCurrentWindow();
     w.onCloseRequested(async (event) => {
@@ -96,7 +103,9 @@ export default function App() {
       })
       .catch(() => {});
     return () => unlisten?.();
-  }, []);
+  }, [isTauri]);
+
+  if (!isTauri) return <WebLanding />;
 
   const refreshPacks = useCallback(() => {
     api.feedInstalled().then(setPacks).catch(() => {});
