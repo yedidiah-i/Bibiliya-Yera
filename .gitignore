@@ -4,7 +4,9 @@ src-tauri/target/
 src-tauri/gen/schemas/
 
 # Bible source downloads (see README > Data pipeline)
+# Ignore the source folder, but keep bysb.xml tracked
 source/
+!source/bysb.xml
 app-icon.png
 
 *.log
