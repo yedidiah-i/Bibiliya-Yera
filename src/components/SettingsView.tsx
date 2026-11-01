@@ -6,7 +6,7 @@ import { Icon } from "./Icon";
 const THEMES: { key: Theme; label: string; hint: string }[] = [
   { key: "light", label: "Umucyo", hint: "Impapuro zera" },
   { key: "sepia", label: "Sepia", hint: "Ijoro ryera" },
-  { key: "night", label: "Ijoro", hint: "Umwijima woroheje" },
+  { key: "night", label: "Ijoro", hint: "Dark mode" },
 ];
 
 export function SettingsView({ meta }: { meta: Meta }) {

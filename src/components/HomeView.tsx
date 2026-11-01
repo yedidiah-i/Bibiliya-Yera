@@ -60,11 +60,10 @@ export function HomeView({ meta, bundle, onOpen, onView }: Props) {
           <div className="eyebrow">{todayLabel()}</div>
           <h1>
             {greeting()}. <br />
-            <span className="h1-dim">Ijambo ry&apos;Imana ni urumuri</span>
+            <span className="h1-dim">Ijambo ryawe ni itabaza ry'ibirenge byanjye, Ni umucyo umurikira inzira yanjye.</span>
           </h1>
           <p className="lede">
-            Bibiliya Yera yose iri mu mudasobwa yawe. Soma igihe cyose, nta murandasi. Iyo
-            ihari, yikura ibyongewe.
+            Bibiliya Yera offline and Online
           </p>
           <div className="home-cta">
             <button
@@ -86,7 +85,7 @@ export function HomeView({ meta, bundle, onOpen, onView }: Props) {
         {lastRead && (
           <button className="continue-card" onClick={() => onOpen(lastRead.book, lastRead.chapter)}>
             <div className="cc-head">
-              <span className="cc-eyebrow">Aho wageze</span>
+              <span className="cc-eyebrow">Aho ugeze</span>
               <span className="cc-time">{timeAgo(lastRead.at)}</span>
             </div>
             <strong>
@@ -94,7 +93,7 @@ export function HomeView({ meta, bundle, onOpen, onView }: Props) {
             </strong>
             {peek && <span className="cc-verse">“{peek}”</span>}
             <span className="cc-cta">
-              Fungura <Icon name="right" size={15} />
+              Open <Icon name="right" size={15} />
             </span>
             <span className="cc-glow" />
           </button>
@@ -105,7 +104,7 @@ export function HomeView({ meta, bundle, onOpen, onView }: Props) {
         <section className="card votd" onClick={() => onOpen(votdRef.book, votdRef.chapter, votdRef.verse)}>
           <div className="card-head">
             <span className="chip gold">
-              <Icon name="sparkle" size={13} /> Umurongo w&apos;umunsi
+              <Icon name="sparkle" size={13} /> Verse of the Day
             </span>
           </div>
           <blockquote>{votd?.text ?? "…"}</blockquote>
@@ -113,7 +112,7 @@ export function HomeView({ meta, bundle, onOpen, onView }: Props) {
             <strong>
               {meta.books[votdRef.book].name} {votdRef.chapter}:{votdRef.verse}
             </strong>
-            <span className="link">Soma igice <Icon name="right" size={13} /></span>
+            <span className="link">Soma Chapter <Icon name="right" size={13} /></span>
           </footer>
         </section>
 
@@ -121,7 +120,7 @@ export function HomeView({ meta, bundle, onOpen, onView }: Props) {
           <section className="card devo">
             <div className="card-head">
               <span className="chip">
-                <Icon name="note" size={13} /> Icyo uri gusoma uyu munsi
+                <Icon name="note" size={13} /> Icyo uri gusoma
               </span>
             </div>
             <h3>{devo.title}</h3>
@@ -151,8 +150,8 @@ export function HomeView({ meta, bundle, onOpen, onView }: Props) {
           </div>
           {activePlans.length === 0 ? (
             <p className="muted">
-              Ntabwo urimo gahunda. Hitamo imwe ugende usoma Bibiliya yose mu mwaka, cyangwa
-              Isezerano Rishya mu minsi 90.
+              Soma Bibiliya yose mu mwaka, cyangwa
+              Isezerano Rishya mu minsi 90!
             </p>
           ) : (
             <ul className="plan-mini">
@@ -213,7 +212,7 @@ export function HomeView({ meta, bundle, onOpen, onView }: Props) {
           {meta.totalVerses.toLocaleString("rw-RW")} imirongo · {meta.translation.short}
         </span>
         <button className="link" onClick={() => onView("online")}>
-          <Icon name="globe" size={13} /> Ibyongewe
+          <Icon name="globe" size={13} /> Added
         </button>
       </div>
     </div>
