@@ -57,7 +57,7 @@ export function WebLanding() {
 
       <section className="web-section" id="installer" aria-labelledby="installer-title">
         <div className="web-section-heading">
-          <p className="eyebrow">Official v1.0.24 downloads</p>
+          <p className="eyebrow">Official v1.0.26 downloads</p>
           <h2 id="installer-title">Install the app on your computer.</h2>
           <p>Choose the package for your operating system. Every download below comes directly from the official Bibiliya Yera GitHub release.</p>
         </div>
@@ -65,28 +65,28 @@ export function WebLanding() {
           <article className="web-installer-card web-download-card">
             <strong>Windows</strong>
             <span>Recommended for Windows 10 and 11</span>
-            <a className="web-primary" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/download/v1.0.24/bibiliya-yera_1.0.0_x64-setup.exe">Download Windows installer (.exe)</a>
-            <a className="web-release-link" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/download/v1.0.24/bibiliya-yera.exe">Download portable Windows .exe</a>
+            <a className="web-primary" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/download/v1.0.26/bibiliya-yera_1.0.0_x64-setup.exe">Download Windows installer (.exe)</a>
+            <a className="web-release-link" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/download/v1.0.26/bibiliya-yera.exe">Download portable Windows .exe</a>
             <small>Use the installer for a normal setup, or the portable .exe without installation. If Windows shows a warning, follow the steps below.</small>
           </article>
           <article className="web-installer-card web-download-card">
             <strong>macOS</strong>
             <span>Universal app for Intel and Apple Silicon</span>
-            <a className="web-secondary" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/download/v1.0.24/bibiliya-yera_1.0.0_universal.dmg">Download macOS .dmg</a>
+            <a className="web-secondary" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/download/v1.0.26/bibiliya-yera_1.0.0_universal.dmg">Download macOS .dmg</a>
             <small>Open the downloaded disk image, then drag Bibiliya Yera to Applications.</small>
           </article>
           <article className="web-installer-card web-download-card">
             <strong>Linux</strong>
             <span>Ubuntu, Debian, Fedora, and portable Linux</span>
             <div className="web-download-row">
-              <a className="web-secondary" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/download/v1.0.24/bibiliya-yera_1.0.0_amd64.deb">.deb</a>
-              <a className="web-secondary" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/download/v1.0.24/bibiliya-yera-1.0.0-1.x86_64.rpm">.rpm</a>
-              <a className="web-secondary" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/download/v1.0.24/bibiliya-yera_1.0.0_amd64.AppImage">AppImage</a>
+              <a className="web-secondary" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/download/v1.0.26/bibiliya-yera_1.0.0_amd64.deb">.deb</a>
+              <a className="web-secondary" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/download/v1.0.26/bibiliya-yera-1.0.0-1.x86_64.rpm">.rpm</a>
+              <a className="web-secondary" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/download/v1.0.26/bibiliya-yera_1.0.0_amd64.AppImage">AppImage</a>
             </div>
             <small>Use .deb for Debian/Ubuntu, .rpm for Fedora, or AppImage without installation.</small>
           </article>
         </div>
-        <a className="web-release-link" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/tag/v1.0.24">View all v1.0.24 release files on GitHub</a>
+        <a className="web-release-link" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/tag/v1.0.26">View all v1.0.26 release files on GitHub</a>
       </section>
 
       <section className="web-section web-help" aria-labelledby="install-help-title">
