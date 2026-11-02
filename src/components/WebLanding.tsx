@@ -55,17 +55,49 @@ export function WebLanding() {
         </div>
       </section>
 
-      <section className="web-section web-split" id="installer" aria-labelledby="installer-title">
-        <div>
-          <p className="eyebrow">Windows desktop app</p>
-          <h2 id="installer-title">A Bible library that works offline.</h2>
-          <p>Install Bibiliya Yera on Windows with the MSI installer from the latest GitHub release.</p>
+      <section className="web-section" id="installer" aria-labelledby="installer-title">
+        <div className="web-section-heading">
+          <p className="eyebrow">Official v1.0.24 downloads</p>
+          <h2 id="installer-title">Install the app on your computer.</h2>
+          <p>Choose the package for your operating system. Every download below comes directly from the official Bibiliya Yera GitHub release.</p>
         </div>
-        <div className="web-installer-card">
-          <strong>Bibiliya Yera for Windows</strong>
-          <span>MSI installer</span>
-          <a className="web-primary" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/download/untagged-7e522b0ae07f05ceca3b/Bibiliya.Yera_1.0.0_x64_en-US.msi">Download MSI installer</a>
-          <small>Version 1.0.0 for 64-bit Windows. Hosted on the Bibiliya Yera GitHub release.</small>
+        <div className="web-download-grid">
+          <article className="web-installer-card web-download-card">
+            <strong>Windows</strong>
+            <span>Recommended for Windows 10 and 11</span>
+            <a className="web-primary" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/download/v1.0.24/bibiliya-yera_1.0.0_x64-setup.exe">Download Windows .exe</a>
+            <small>64-bit setup installer. If Windows shows a warning, follow the steps below.</small>
+          </article>
+          <article className="web-installer-card web-download-card">
+            <strong>macOS</strong>
+            <span>Universal app for Intel and Apple Silicon</span>
+            <a className="web-secondary" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/download/v1.0.24/bibiliya-yera_1.0.0_universal.dmg">Download macOS .dmg</a>
+            <small>Open the downloaded disk image, then drag Bibiliya Yera to Applications.</small>
+          </article>
+          <article className="web-installer-card web-download-card">
+            <strong>Linux</strong>
+            <span>Ubuntu, Debian, Fedora, and portable Linux</span>
+            <div className="web-download-row">
+              <a className="web-secondary" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/download/v1.0.24/bibiliya-yera_1.0.0_amd64.deb">.deb</a>
+              <a className="web-secondary" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/download/v1.0.24/bibiliya-yera-1.0.0-1.x86_64.rpm">.rpm</a>
+              <a className="web-secondary" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/download/v1.0.24/bibiliya-yera_1.0.0_amd64.AppImage">AppImage</a>
+            </div>
+            <small>Use .deb for Debian/Ubuntu, .rpm for Fedora, or AppImage without installation.</small>
+          </article>
+        </div>
+        <a className="web-release-link" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/tag/v1.0.24">View all v1.0.24 release files on GitHub</a>
+      </section>
+
+      <section className="web-section web-help" aria-labelledby="install-help-title">
+        <div className="web-section-heading">
+          <p className="eyebrow">Installation help</p>
+          <h2 id="install-help-title">If your computer shows a security warning.</h2>
+          <p>These warnings usually mean the app is new or not notarized yet. The files are still hosted in the official repository.</p>
+        </div>
+        <div className="web-help-grid">
+          <article><h3>Windows: “Windows protected your PC”</h3><ol><li>Download the <strong>.exe</strong> from the button above.</li><li>Open it and select <strong>More info</strong>.</li><li>Select <strong>Run anyway</strong>, then continue through setup.</li></ol></article>
+          <article><h3>macOS: “Cannot be opened”</h3><ol><li>Open the .dmg and move the app to Applications.</li><li>Control-click the app and select <strong>Open</strong>.</li><li>Confirm <strong>Open</strong> in the dialog. If needed, go to System Settings → Privacy &amp; Security → Open Anyway.</li></ol></article>
+          <article><h3>Linux: permission denied</h3><ol><li>For .deb or .rpm, open the package with your software manager.</li><li>For AppImage, right-click the file and enable <strong>Allow executing file as program</strong>.</li><li>Then double-click the AppImage to launch it.</li></ol></article>
         </div>
       </section>
 
