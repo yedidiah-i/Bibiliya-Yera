@@ -59,6 +59,7 @@ body:has(.web-landing) #root {
 .web-download-row { display: flex; flex-wrap: wrap; gap: 8px; }
 .web-download-row .web-secondary { margin-top: 12px; }
 .web-release-link { display: inline-block; margin-top: 28px; color: var(--accent); font-size: 14px; font-weight: 700; }
+.web-download-card .web-release-link { margin-top: 0; }
 .web-help { padding-top: 0; }
 .web-help-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 48px; }
 .web-help-grid article { padding: 24px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
