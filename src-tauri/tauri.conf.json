@@ -30,9 +30,13 @@
   },
   "bundle": {
     "active": true,
-    "targets": ["nsis", "msi"],
-    "icon": ["icons/32x32.png", "icons/128x128.png", "icons/icon.ico"],
-    "shortDescription": "Bibiliya Yera — Kinyarwanda Bible for Windows",
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/icon.ico"
+    ],
+    "shortDescription": "Bibiliya Yera — Kinyarwanda Bible for desktop",
     "longDescription": "Bibiliya Yera (BYSB) with offline reading, fast search, cross references, highlights, notes and reading plans. Works fully offline; connects only to fetch content you publish.",
     "publisher": "Bibiliya Yera",
     "category": "Reference",
