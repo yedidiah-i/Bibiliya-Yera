@@ -31,16 +31,24 @@
   "bundle": {
     "active": true,
     "targets": "all",
+
+    "resources": [
+      "resources/bible.bin",
+      "resources/xref.bin"
+    ],
+
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",
       "icons/icon.ico"
     ],
-    "shortDescription": "Bibiliya Yera — Kinyarwanda Bible for desktop",
+
+    "shortDescription": "Bibiliya Yera — Kinyarwanda Bible for Windows",
     "longDescription": "Bibiliya Yera (BYSB) with offline reading, fast search, cross references, highlights, notes and reading plans. Works fully offline; connects only to fetch content you publish.",
     "publisher": "Bibiliya Yera",
     "category": "Reference",
     "copyright": "Bibiliya Yera (BYSB) © Bible Society of Rwanda. App © Bibiliya Yera.",
+
     "windows": {
       "nsis": {
         "installMode": "currentUser",
