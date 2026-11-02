@@ -65,8 +65,9 @@ export function WebLanding() {
           <article className="web-installer-card web-download-card">
             <strong>Windows</strong>
             <span>Recommended for Windows 10 and 11</span>
-            <a className="web-primary" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/download/v1.0.24/bibiliya-yera_1.0.0_x64-setup.exe">Download Windows .exe</a>
-            <small>64-bit setup installer. If Windows shows a warning, follow the steps below.</small>
+            <a className="web-primary" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/download/v1.0.24/bibiliya-yera_1.0.0_x64-setup.exe">Download Windows installer (.exe)</a>
+            <a className="web-release-link" href="https://github.com/yedidiah-i/Bibiliya-Yera/releases/download/v1.0.24/bibiliya-yera.exe">Download portable Windows .exe</a>
+            <small>Use the installer for a normal setup, or the portable .exe without installation. If Windows shows a warning, follow the steps below.</small>
           </article>
           <article className="web-installer-card web-download-card">
             <strong>macOS</strong>
